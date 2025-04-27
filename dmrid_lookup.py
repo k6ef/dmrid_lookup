@@ -16,7 +16,6 @@ def ensure_venv():
         print("Creating virtual environment...")
         venv.create(venv_dir, with_pip=True)
 
-    # Install packages if needed
     try:
         subprocess.run([python_executable, "-c", "import requests"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError:
@@ -104,4 +103,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
