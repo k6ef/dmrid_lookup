@@ -7,6 +7,8 @@ import venv
 import argparse
 import csv
 
+__version__ = "1.0.6"
+
 def ensure_venv():
     """Create venv if not present, and install required packages."""
     venv_dir = os.path.join(os.path.dirname(__file__), 'venv')
@@ -109,6 +111,7 @@ def main():
     group.add_argument("callsigns", nargs="*", help="One or more callsigns to lookup")
     parser.add_argument("--pretty", action="store_true", help="Pretty print results as a table")
     parser.add_argument("--save", metavar="FILENAME", help="Save results to a CSV file")
+    parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     args = parser.parse_args()
 
     if args.id is not None:
