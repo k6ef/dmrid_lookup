@@ -29,7 +29,8 @@ jobs:
     - name: Clean old builds and build
       run: |
         rm -rf dist/
-        python -m build
+        python -m pip install build
+        python -m build .
 
     - name: Run python-semantic-release
       env:
