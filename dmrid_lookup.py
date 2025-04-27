@@ -141,6 +141,7 @@ def main():
     if args.save:
         save_to_csv(all_results, args.save)
 
+print("Auto-bump testing release 🚀")
 
 if __name__ == "__main__":
     main()
