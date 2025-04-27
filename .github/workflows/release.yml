@@ -24,12 +24,14 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install python-semantic-release build
+        python -m pip install build python-semantic-release
 
-    - name: Clean old builds and build
+    - name: Clean old dist
       run: |
         rm -rf dist/
-        python -m pip install build
+
+    - name: Build package
+      run: |
         python -m build .
 
     - name: Run python-semantic-release
