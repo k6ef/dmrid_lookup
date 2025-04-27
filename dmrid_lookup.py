@@ -73,13 +73,20 @@ def main():
         subprocess.check_call([python_executable] + sys.argv)
         sys.exit(0)
 
-    parser = argparse.ArgumentParser(description="Lookup DMR ID(s) by callsign(s).")
-    parser.add_argument("callsigns", nargs="+", help="One or more callsigns to lookup")
+    parser = argparse.ArgumentParser(description="Lookup DMR ID(s) by callsign(s) or lookup callsign by DMR ID.")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--id", type=int, help="Lookup callsign by DMR ID")
+    group.add_argument("callsigns", nargs="*", help="One or more callsigns to lookup")
     parser.add_argument("--pretty", action="store_true", help="Pretty print results as a table")
     parser.add_argument("--save", metavar="FILENAME", help="Save results to a CSV file")
-
     args = parser.parse_args()
 
+    if args.id is not None:
+        # Do DMR ID lookup only
+        lookup_by_id(args.id)
+        sys.exit(0)
+
+    # Else, handle callsign lookup
     all_results = []
     for callsign in args.callsigns:
         results = get_dmr_ids(callsign)
@@ -100,6 +107,7 @@ def main():
 
     if args.save:
         save_to_csv(all_results, args.save)
+
 
 if __name__ == "__main__":
     main()
