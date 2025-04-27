@@ -43,6 +43,36 @@ def get_dmr_ids(callsign):
         print(f"Error querying {callsign}: {e}")
         return []
 
+
+def lookup_by_id(dmr_id):
+    """Lookup callsign by DMR ID."""
+    import requests
+
+    url = f"https://www.radioid.net/api/dmr/user/?id={dmr_id}"
+    try:
+        response = requests.get(url, timeout=10)
+
+        if response.status_code == 406:
+            print(f"🔎 No matching callsign found for DMR ID {dmr_id}. (Not in database)")
+            return None
+
+        response.raise_for_status()
+        data = response.json()
+
+        if not data.get("results"):
+            print(f"🔎 No matching callsign found for DMR ID {dmr_id}.")
+            return None
+
+        record = data["results"][0]
+        callsign = record.get("callsign", "(Unknown)")
+        print(f"✅ DMR ID {dmr_id} belongs to callsign: 📡 {callsign}")
+        return record
+
+    except requests.RequestException as e:
+        print(f"❌ Error querying DMR ID {dmr_id}: {e}")
+        return None
+
+
 def pretty_print(results):
     """Pretty print results using rich."""
     from rich.table import Table
