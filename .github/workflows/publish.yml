@@ -3,7 +3,7 @@ name: Build and Publish 🐍
 on:
   push:
     tags:
-      - 'v*'  # Only trigger on version tags like v1.0.0, v2.0.0
+      - 'v*'  # Only trigger on version tags like v1.0.0
 
 jobs:
   build-and-publish:
@@ -31,9 +31,17 @@ jobs:
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
 
-    - name: Create GitHub Release
+    - name: Create GitHub Release ✨
       uses: softprops/action-gh-release@v2
       with:
+        name: Release ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        body: |
+          ## 🚀 What's New
+
+          See the [commits](https://github.com/${{ github.repository }}/compare/${{ github.ref_name }}^...${{ github.ref_name }}) for full changes.
+
+          🎉 Thanks for using dmrid_lookup!
         files: |
           dist/*.whl
           dist/*.tar.gz
