@@ -32,16 +32,10 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
 
     - name: Create GitHub Release ✨
-      uses: softprops/action-gh-release@v2
+      uses: marvinpinto/action-automatic-releases@latest
       with:
-        name: Release ${{ github.ref_name }}
-        tag_name: ${{ github.ref_name }}
-        body: |
-          ## 🚀 What's New
-
-          See the [commits](https://github.com/${{ github.repository }}/compare/${{ github.ref_name }}^...${{ github.ref_name }}) for full changes.
-
-          🎉 Thanks for using dmrid_lookup!
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        prerelease: false
         files: |
           dist/*.whl
           dist/*.tar.gz
