@@ -2,11 +2,9 @@
 version_variable = dmrid_lookup.py:__version__
 branch = main
 upload_to_pypi = true
+upload_to_release = true
 build_command = python -m build
-upload_to_release = false
 github_use_tag_release = true
 changelog_file = CHANGELOG.md
 major_on_zero = true
-[debug]
-enabled = true
 
