@@ -1,8 +1,13 @@
+import re
 from setuptools import setup
+
+# Read the version dynamically from dmrid_lookup.py
+with open("dmrid_lookup.py", "r") as f:
+    version = re.search(r'__version__\s*=\s*["\']([^"\']+)["\']', f.read()).group(1)
 
 setup(
     name="dmrid-lookup",
-    version="1.0.0",  # semantic-release will bump this automatically
+    version=version,
     py_modules=["dmrid_lookup"],
     install_requires=[
         "requests",
@@ -13,7 +18,7 @@ setup(
             "dmrid_lookup=dmrid_lookup:main",
         ],
     },
-    author="Your Name",
+    author="Mark Cohen",
     author_email="k6ef@k6ef.net",
     description="A CLI tool to lookup DMR ID from callsign or vice-versa using radioid.net",
     long_description=open("README.md").read(),
