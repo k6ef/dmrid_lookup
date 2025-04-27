@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="dmrid-lookup",
-    version="1.0.1",
+    version="1.0.4",
     py_modules=["dmrid_lookup"],
     install_requires=[
         "requests",
