@@ -6,4 +6,5 @@ build_command = python -m build
 upload_to_release = false
 github_use_tag_release = true
 changelog_file = CHANGELOG.md
+major_on_zero = true
 
