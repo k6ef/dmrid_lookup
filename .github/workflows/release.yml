@@ -15,18 +15,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # Needed for tags
 
-    - name: Setup Python
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.x'
 
     - name: Install dependencies
       run: |
+        pip install --upgrade pip
         pip install python-semantic-release build twine
 
-    - name: Run python-semantic-release (Python version)
+    - name: Run python-semantic-release
       env:
         PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
