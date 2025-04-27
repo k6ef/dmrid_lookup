@@ -1,4 +1,4 @@
-# DMRID Lookup 📡
+# DMRID Lookup 📡 for amateur radio
 
 A lightweight command-line tool to lookup DMR IDs for amateur radio callsigns using [radioid.net](https://www.radioid.net/).
 
