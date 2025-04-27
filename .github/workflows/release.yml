@@ -24,15 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install build python-semantic-release
-
-    - name: Clean old dist
-      run: |
-        rm -rf dist/
-
-    - name: Build package
-      run: |
-        python -m build .
+        pip install python-semantic-release build twine
 
     - name: Run python-semantic-release
       env:
