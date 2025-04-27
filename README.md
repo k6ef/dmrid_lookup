@@ -14,3 +14,4 @@ A lightweight command-line tool to lookup DMR IDs for amateur radio callsigns us
 ```bash
 pip install dmrid-lookup
 
+# Minor typo fix
