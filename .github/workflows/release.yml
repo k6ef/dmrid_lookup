@@ -1,4 +1,4 @@
-name: Build, Version, and Publish 🚀
+name: Release Python Package 🚀
 
 on:
   push:
@@ -9,29 +9,27 @@ jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # VERY IMPORTANT for semantic-release to push tags
-      issues: write
-      pull-requests: write
+      contents: write
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        persist-credentials: false  # optional but sometimes cleaner
-        fetch-depth: 0  # VERY IMPORTANT to fetch full history
+        fetch-depth: 0
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Python
+      uses: actions/setup-python@v5
       with:
-        node-version: '20'
+        python-version: '3.x'
 
-    - name: Install semantic-release tools
+    - name: Install dependencies
       run: |
-        npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github
+        pip install python-semantic-release build
 
-    - name: Run semantic-release
+    - name: Run python-semantic-release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        semantic-release
+        semantic-release publish
 
