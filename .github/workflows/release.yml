@@ -8,23 +8,30 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # VERY IMPORTANT for semantic-release to push tags
+      issues: write
+      pull-requests: write
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        persist-credentials: false  # optional but sometimes cleaner
+        fetch-depth: 0  # VERY IMPORTANT to fetch full history
 
-    - name: Setup Node.js (needed for semantic-release)
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
 
     - name: Install semantic-release tools
       run: |
-        npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+        npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github
 
     - name: Run semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         semantic-release
 
