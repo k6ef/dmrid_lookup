@@ -1,0 +1,26 @@
+name-template: "🚀 Release v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+categories:
+  - title: "✨ Features"
+    labels:
+      - "feat"
+  - title: "🐛 Fixes"
+    labels:
+      - "fix"
+  - title: "📚 Documentation"
+    labels:
+      - "docs"
+  - title: "🧹 Maintenance"
+    labels:
+      - "chore"
+  - title: "⚡ Performance"
+    labels:
+      - "perf"
+change-template: "- $TITLE (#$NUMBER) @$AUTHOR"
+template: |
+  ## 🚀 What's Changed
+
+  $CHANGES
+
+  🎉 Thank you for using dmrid_lookup!
+
