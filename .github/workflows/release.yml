@@ -30,6 +30,7 @@ jobs:
       env:
         PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEBUG: semantic_release*
       run: |
         semantic-release publish
 
