@@ -20,19 +20,21 @@ from dmrid_lookup import (
 
 @pytest.fixture
 def mock_requests():
-    with patch('dmrid_lookup.dmrid_lookup.requests.get') as mock:
+    with patch('requests.get') as mock:
         yield mock
 
 
 @pytest.fixture
 def mock_rich():
-    with patch('dmrid_lookup.dmrid_lookup.Table') as mock_table, \
-         patch('dmrid_lookup.dmrid_lookup.Console') as mock_console:
+    with patch('rich.table.Table') as mock_table, \
+         patch('rich.console.Console') as mock_console:
         yield mock_table, mock_console
 
 
 def test_get_dmr_ids_success(mock_requests):
-    mock_requests.return_value.json.return_value = {'results': [{'id': 123456}]}
+    mock_response = MagicMock()
+    mock_response.json.return_value = {'results': [{'id': 123456}]}
+    mock_requests.return_value = mock_response
     result = get_dmr_ids()
     assert result == {'results': [{'id': 123456}]}
     mock_requests.assert_called_once_with(
@@ -43,7 +45,9 @@ def test_get_dmr_ids_success(mock_requests):
 
 
 def test_get_dmr_ids_no_results(mock_requests):
-    mock_requests.return_value.json.return_value = {'results': []}
+    mock_response = MagicMock()
+    mock_response.json.return_value = {'results': []}
+    mock_requests.return_value = mock_response
     result = get_dmr_ids()
     assert result == {'results': []}
 
@@ -55,7 +59,9 @@ def test_get_dmr_ids_error(mock_requests):
 
 
 def test_lookup_by_id_success(mock_requests):
-    mock_requests.return_value.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_response = MagicMock()
+    mock_response.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_requests.return_value = mock_response
     result = lookup_by_id(123456)
     assert result == {'id': 123456, 'name': 'Test User'}
     mock_requests.assert_called_once_with(
@@ -84,20 +90,31 @@ def test_save_to_csv(tmp_path):
 
 def test_pretty_print(mock_rich):
     mock_table, mock_console = mock_rich
+    mock_table_instance = MagicMock()
+    mock_table.return_value = mock_table_instance
+    mock_console_instance = MagicMock()
+    mock_console.return_value = mock_console_instance
+
     data = {'id': 123456, 'name': 'Test User'}
     pretty_print(data)
+
     mock_table.assert_called_once_with(title="DMR ID Information")
-    mock_console.return_value.print.assert_called_once()
+    assert mock_table_instance.add_column.call_count == 2
+    mock_console_instance.print.assert_called_once_with(mock_table_instance)
 
 
 def test_main_with_id(mock_requests):
-    mock_requests.return_value.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_response = MagicMock()
+    mock_response.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_requests.return_value = mock_response
     with patch('sys.argv', ['script.py', '--id', '123456']):
         assert main() == 0
 
 
 def test_main_with_id_and_csv(mock_requests, tmp_path):
-    mock_requests.return_value.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_response = MagicMock()
+    mock_response.json.return_value = {'id': 123456, 'name': 'Test User'}
+    mock_requests.return_value = mock_response
     csv_file = tmp_path / "test.csv"
     with patch('sys.argv', ['script.py', '--id', '123456', '--csv', str(csv_file)]):
         assert main() == 0
