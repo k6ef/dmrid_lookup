@@ -33,5 +33,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEBUG: semantic_release*
       run: |
-        python3 -m semantic_release publish
+        set -x
+        python3 -m semantic_release publish --noop
 
