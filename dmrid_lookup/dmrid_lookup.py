@@ -2,6 +2,8 @@
 DMR ID Lookup Tool core functionality
 """
 
+import sys
+import argparse
 import requests
 from rich.console import Console
 from rich.table import Table
@@ -77,6 +79,28 @@ def main():
     ensure_venv()
     console = Console()
 
-    # Add your main logic here
-    console.print("DMR ID Lookup Tool")
-    # ... rest of the main function implementation 
+    parser = argparse.ArgumentParser(description="DMR ID Lookup Tool")
+    parser.add_argument("--id", type=int, help="DMR ID to look up")
+    parser.add_argument("--csv", type=str, help="Save output to CSV file")
+    args = parser.parse_args()
+
+    if args.id:
+        data = lookup_by_id(args.id)
+        if data:
+            if args.csv:
+                save_to_csv(data, args.csv)
+                console.print(f"Data saved to {args.csv}")
+            else:
+                pretty_print(data)
+        else:
+            console.print("No data found for the specified DMR ID", style="red")
+            sys.exit(1)
+    else:
+        console.print("Please provide a DMR ID using --id", style="yellow")
+        sys.exit(1)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main()) 
