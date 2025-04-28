@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.8 (2025-04-28)
+
+### Bug Fixes
+
+- Move all functions to dmrid_lookup.py and fix imports
+  ([`1b93a25`](https://github.com/k6ef/dmrid_lookup/commit/1b93a25ef13983e500f4cb7219e6163304930b65))
+
+
 ## v1.1.7 (2025-04-28)
 
 ### Bug Fixes
