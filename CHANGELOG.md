@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.1 (2025-04-28)
+
+### Bug Fixes
+
+- Update workflows to use Python 3.11
+  ([`fe7caf1`](https://github.com/k6ef/dmrid_lookup/commit/fe7caf1cca39c2e8cea224db4337376974266611))
+
+
 ## v1.1.0 (2025-04-28)
 
 ### Bug Fixes
