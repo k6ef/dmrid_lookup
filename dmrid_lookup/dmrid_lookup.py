@@ -8,6 +8,7 @@ import requests
 from rich.console import Console
 from rich.table import Table
 
+
 def get_dmr_ids():
     """Fetch all DMR IDs from the API."""
     try:
@@ -56,7 +57,6 @@ def pretty_print(data):
 
 def ensure_venv():
     """Ensure we're running in a virtual environment."""
-    import sys
     if not hasattr(sys, 'real_prefix') and not hasattr(sys, 'base_prefix'):
         print("Warning: Not running in a virtual environment!")
 
