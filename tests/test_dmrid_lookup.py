@@ -1,7 +1,12 @@
+import os
+import sys
 import pytest
 from unittest.mock import patch, MagicMock
+
+# Add the project root to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from dmrid_lookup import (
-    DMRIDLookup,
     get_dmr_ids,
     lookup_by_id,
     pretty_print,
