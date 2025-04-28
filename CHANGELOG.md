@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.5 (2025-04-28)
+
+### Bug Fixes
+
+- Implement main function with proper CLI arguments
+  ([`feb3d73`](https://github.com/k6ef/dmrid_lookup/commit/feb3d7323389296d05bd4f6d2ac9332819ef6ba4))
+
+
 ## v1.1.4 (2025-04-28)
 
 ### Bug Fixes
