@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="dmrid_lookup",
-    version="1.0.12",
+    version="1.0.13",
     author="Mark Cohen",
     author_email="k6ef@k6ef.net",
     description="A tool to lookup DMR IDs and callsigns",

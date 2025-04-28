@@ -6,8 +6,9 @@ import subprocess
 import venv
 import argparse
 import csv
+from typing import List, Dict, Any, Optional
 
-__version__ = "1.0.12"
+__version__ = "1.0.13"
 
 def ensure_venv():
     """Create venv if not present, and install required packages."""
@@ -37,7 +38,7 @@ def ensure_venv():
 
     return python_executable
 
-def get_dmr_ids(callsign):
+def get_dmr_ids(callsign: str) -> List[Dict[str, Any]]:
     """Query DMR IDs by callsign."""
     import requests
 
@@ -63,7 +64,7 @@ def get_dmr_ids(callsign):
         return []
 
 
-def lookup_by_id(dmr_id):
+def lookup_by_id(dmr_id: int) -> Optional[Dict[str, Any]]:
     """Lookup callsign by DMR ID."""
     import requests
 
@@ -95,7 +96,7 @@ def lookup_by_id(dmr_id):
         return None
 
 
-def pretty_print(results):
+def pretty_print(results: List[Dict[str, Any]]) -> None:
     """Pretty print results using rich."""
     from rich.table import Table
     from rich.console import Console
@@ -111,7 +112,7 @@ def pretty_print(results):
 
     console.print(table)
 
-def save_to_csv(results, filename):
+def save_to_csv(results: List[Dict[str, Any]], filename: str) -> None:
     """Save results to a CSV file."""
     with open(filename, mode='w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=["callsign", "dmr_id"])
