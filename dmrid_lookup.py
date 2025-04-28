@@ -147,3 +147,4 @@ if __name__ == "__main__":
 # final real bump 🚀
 # final real full bump 🚀
 # fixing for semantic-release trigger
+# fixing for semantic-release trigger
