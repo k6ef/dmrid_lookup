@@ -3,7 +3,7 @@ name: Semantic Release 🏷️
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   release:
@@ -18,8 +18,18 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
     - name: Python Semantic Release
       uses: python-semantic-release/python-semantic-release@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        pypi_token: ${{ secrets.PYPI_API_TOKEN }} 
+        pypi_token: ${{ secrets.PYPI_API_TOKEN }}
+        commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+        commit_message: "chore(release): {version} [skip ci]"
+        build_command: "python -m build"
+        upload_to_pypi: true
+        upload_to_release: true 
