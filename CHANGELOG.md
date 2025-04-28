@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.4 (2025-04-28)
+
+### Bug Fixes
+
+- Reorganize module structure to fix import issues
+  ([`6162f12`](https://github.com/k6ef/dmrid_lookup/commit/6162f12e41fc4b8f0bcb18487abb40ce89ae79c6))
+
+
 ## v1.1.3 (2025-04-28)
 
 ### Bug Fixes
