@@ -54,7 +54,6 @@ def test_get_dmr_ids_no_results(mock_requests):
 def test_get_dmr_ids_error(mock_requests):
     # Mock API error
     mock_requests.get.side_effect = Exception("API Error")
-    
     results = get_dmr_ids("ERROR")
     assert len(results) == 0
 
@@ -86,7 +85,6 @@ def test_lookup_by_id_not_found(mock_requests):
 def test_lookup_by_id_error(mock_requests):
     # Mock API error
     mock_requests.get.side_effect = Exception("API Error")
-    
     result = lookup_by_id(123456)
     assert result is None
 
@@ -98,9 +96,7 @@ def test_save_to_csv(tmp_path):
         {"callsign": "TEST2", "dmr_id": 789012}
     ]
     test_file = tmp_path / "test_results.csv"
-    
     save_to_csv(results, str(test_file))
-    
     assert test_file.exists()
     with open(test_file) as f:
         content = f.read()
@@ -115,7 +111,6 @@ def test_pretty_print(capsys):
         {"callsign": "TEST1", "dmr_id": 123456},
         {"callsign": "TEST2", "dmr_id": 789012}
     ]
-    
     pretty_print(results)
     captured = capsys.readouterr()
     assert "TEST1" in captured.out
