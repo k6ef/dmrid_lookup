@@ -18,3 +18,4 @@ pip install dmrid-lookup
 # Tiny fix to trigger release
 # trigger real bump 🚀
 # trigger bump
+# bump trigger
