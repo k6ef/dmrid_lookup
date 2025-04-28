@@ -1,3 +1,11 @@
+"""
+DMR ID Lookup Tool
+
+A Python package for looking up DMR IDs from radioid.net
+"""
+
+__version__ = "1.0.14"
+
 import requests
 from rich.console import Console
 from rich.table import Table
