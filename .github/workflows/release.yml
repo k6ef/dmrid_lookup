@@ -15,8 +15,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Needed for tags
-	refs: main
+        fetch-depth: 0  # Full history fetch
+        ref: main  # Explicitly ensure it checks out the right branch
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -26,12 +26,11 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install --upgrade python-semantic-release build twine
+        pip install --upgrade build twine python-semantic-release
 
     - name: Check python-semantic-release version
       run: |
         python3 -m semantic_release --version  # Ensure latest version installed
-
 
     - name: Run python-semantic-release
       env:
@@ -40,5 +39,5 @@ jobs:
         DEBUG: semantic_release*
       run: |
         set -x
-        python3 -m semantic_release publish 
+        python3 -m semantic_release publish
 
