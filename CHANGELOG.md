@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.7 (2025-04-28)
+
+### Bug Fixes
+
+- Update test mocking and assertions
+  ([`52f2ce1`](https://github.com/k6ef/dmrid_lookup/commit/52f2ce124d6bcf4a219d31afa3b9749a6286f651))
+
+
 ## v1.1.6 (2025-04-28)
 
 ### Bug Fixes
