@@ -10,6 +10,7 @@ from typing import List, Dict, Any, Optional
 
 __version__ = "1.0.13"
 
+
 def ensure_venv():
     """Create venv if not present, and install required packages."""
     venv_dir = os.path.join(os.path.dirname(__file__), 'venv')
@@ -37,6 +38,7 @@ def ensure_venv():
         )
 
     return python_executable
+
 
 def get_dmr_ids(callsign: str) -> List[Dict[str, Any]]:
     """Query DMR IDs by callsign."""
@@ -112,6 +114,7 @@ def pretty_print(results: List[Dict[str, Any]]) -> None:
 
     console.print(table)
 
+
 def save_to_csv(results: List[Dict[str, Any]], filename: str) -> None:
     """Save results to a CSV file."""
     with open(filename, mode='w', newline='') as file:
@@ -119,6 +122,7 @@ def save_to_csv(results: List[Dict[str, Any]], filename: str) -> None:
         writer.writeheader()
         writer.writerows(results)
     print(f"✅ Saved results to {filename}")
+
 
 def main():
     if sys.prefix == sys.base_prefix:

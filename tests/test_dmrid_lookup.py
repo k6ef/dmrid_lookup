@@ -2,11 +2,10 @@ import os
 import sys
 from unittest.mock import patch, MagicMock
 import requests.exceptions
+import pytest
 from rich.table import Table
 from rich.console import Console
-
-import pytest
-
+import dmrid_lookup
 
 # Add the project root to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -55,7 +54,9 @@ def test_lookup_by_id_success(mock_requests):
     mock_requests.return_value.json.return_value = {'results': [{'id': 123456}]}
     result = lookup_by_id(123456)
     assert result == {'results': [{'id': 123456}]}
-    mock_requests.assert_called_once_with('https://api.radioid.net/api/dmr/user/?id=123456')
+    mock_requests.assert_called_once_with(
+        'https://api.radioid.net/api/dmr/user/?id=123456'
+    )
 
 
 def test_lookup_by_id_error(mock_requests):
@@ -93,4 +94,9 @@ def test_pretty_print(mock_rich):
     mock_table.assert_called_once_with(title="DMR ID Information")
     assert mock_table_instance.add_column.call_count == 2
     mock_table_instance.add_row.assert_called_with('id', '123456')
-    mock_console_instance.print.assert_called_once_with(mock_table_instance) 
+    mock_console_instance.print.assert_called_once_with(mock_table_instance)
+
+    assert mock_requests.called
+    assert mock_requests.call_args[0][0] == f"https://radioid.net/api/dmr/user/?id={dmr_id}"
+    assert mock_requests.call_args[1]["headers"] == {"Accept": "application/json"}
+    assert mock_requests.call_args[1]["timeout"] == 10 
