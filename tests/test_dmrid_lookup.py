@@ -1,7 +1,9 @@
 import os
 import sys
-import pytest
 from unittest.mock import patch, MagicMock
+
+import pytest
+
 
 # Add the project root to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -13,10 +15,12 @@ from dmrid_lookup import (
     save_to_csv
 )
 
+
 @pytest.fixture
 def mock_requests():
     with patch('dmrid_lookup.requests') as mock:
         yield mock
+
 
 def test_get_dmr_ids_success(mock_requests):
     # Mock successful API response
@@ -36,6 +40,7 @@ def test_get_dmr_ids_success(mock_requests):
     assert results[1]["callsign"] == "TEST2"
     assert results[1]["dmr_id"] == 789012
 
+
 def test_get_dmr_ids_no_results(mock_requests):
     # Mock empty API response
     mock_response = MagicMock()
@@ -45,12 +50,14 @@ def test_get_dmr_ids_no_results(mock_requests):
     results = get_dmr_ids("NONE")
     assert len(results) == 0
 
+
 def test_get_dmr_ids_error(mock_requests):
     # Mock API error
     mock_requests.get.side_effect = Exception("API Error")
     
     results = get_dmr_ids("ERROR")
     assert len(results) == 0
+
 
 def test_lookup_by_id_success(mock_requests):
     # Mock successful API response
@@ -65,6 +72,7 @@ def test_lookup_by_id_success(mock_requests):
     assert result["callsign"] == "TEST1"
     assert result["id"] == 123456
 
+
 def test_lookup_by_id_not_found(mock_requests):
     # Mock 406 response (not found)
     mock_response = MagicMock()
@@ -74,12 +82,14 @@ def test_lookup_by_id_not_found(mock_requests):
     result = lookup_by_id(999999)
     assert result is None
 
+
 def test_lookup_by_id_error(mock_requests):
     # Mock API error
     mock_requests.get.side_effect = Exception("API Error")
     
     result = lookup_by_id(123456)
     assert result is None
+
 
 def test_save_to_csv(tmp_path):
     # Test CSV file creation
@@ -97,6 +107,7 @@ def test_save_to_csv(tmp_path):
         assert "callsign,dmr_id" in content
         assert "TEST1,123456" in content
         assert "TEST2,789012" in content
+
 
 def test_pretty_print(capsys):
     # Test pretty print functionality
