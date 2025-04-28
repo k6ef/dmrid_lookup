@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v1.1.3 (2025-04-28)
+
+### Bug Fixes
+
+- Properly expose main function in __init__.py
+  ([`e18c447`](https://github.com/k6ef/dmrid_lookup/commit/e18c44784a3fe72ddb8736dfc9a82ef6d45b8839))
+
+### Chores
+
+- Bump version to 1.0.14
+  ([`870529f`](https://github.com/k6ef/dmrid_lookup/commit/870529fb6afd790b50aa356e2c988b23fca08dc8))
+
+
 ## v1.1.2 (2025-04-28)
 
 ### Bug Fixes
