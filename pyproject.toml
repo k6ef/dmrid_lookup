@@ -2,16 +2,3 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[semantic_release]
-version_variable = "dmrid_lookup.py.__version__"  # Correct format with quotes
-branch = "main"  # The main branch for version releases
-upload_to_pypi = true  # Enable PyPI upload
-upload_to_release = true  # Enable GitHub release creation
-build_command = "python -m build"  # Command to build the package
-github_use_tag_release = true  # Use tags to create a release on GitHub
-changelog_file = "CHANGELOG.md"  # Location of changelog file
-major_on_zero = true  # Create a major release for 0.x versioning
-
-# Correct configuration for branches (using dictionary format)
-branches = { "main": "main", "next": "next", "master": "master" }
-
