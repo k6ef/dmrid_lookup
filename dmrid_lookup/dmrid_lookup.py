@@ -1,30 +1,10 @@
 """
-DMR ID Lookup Tool
-
-A Python package for looking up DMR IDs from radioid.net
+DMR ID Lookup Tool core functionality
 """
 
-__version__ = "1.0.14"
-
-from .dmrid_lookup import (
-    main,
-    get_dmr_ids,
-    lookup_by_id,
-    pretty_print,
-    save_to_csv,
-    ensure_venv
-)
-
-__all__ = [
-    'main',
-    'get_dmr_ids',
-    'lookup_by_id',
-    'pretty_print',
-    'save_to_csv',
-    'ensure_venv',
-    '__version__'
-]
-
+import requests
+from rich.console import Console
+from rich.table import Table
 
 def get_dmr_ids():
     """Fetch all DMR IDs from the API."""
@@ -69,4 +49,34 @@ def pretty_print(data):
         table.add_row(str(key), str(value))
 
     console = Console()
-    console.print(table) 
+    console.print(table)
+
+
+def ensure_venv():
+    """Ensure we're running in a virtual environment."""
+    import sys
+    if not hasattr(sys, 'real_prefix') and not hasattr(sys, 'base_prefix'):
+        print("Warning: Not running in a virtual environment!")
+
+
+def save_to_csv(data, filename):
+    """Save DMR ID data to a CSV file."""
+    import csv
+    if not data:
+        return
+
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Field', 'Value'])
+        for key, value in data.items():
+            writer.writerow([key, value])
+
+
+def main():
+    """Main function to run the DMR ID lookup tool."""
+    ensure_venv()
+    console = Console()
+
+    # Add your main logic here
+    console.print("DMR ID Lookup Tool")
+    # ... rest of the main function implementation 
