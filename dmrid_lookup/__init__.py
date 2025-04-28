@@ -8,7 +8,25 @@ __version__ = "1.0.14"
 
 import requests
 from rich.console import Console
-from rich.table import Table
+
+from .dmrid_lookup import (
+    main,
+    get_dmr_ids,
+    lookup_by_id,
+    pretty_print,
+    save_to_csv,
+    ensure_venv
+)
+
+__all__ = [
+    'main',
+    'get_dmr_ids',
+    'lookup_by_id',
+    'pretty_print',
+    'save_to_csv',
+    'ensure_venv',
+    '__version__'
+]
 
 
 def get_dmr_ids():
