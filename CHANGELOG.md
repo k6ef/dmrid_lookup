@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.2 (2025-04-28)
+
+### Bug Fixes
+
+- Improve test coverage and code quality
+  ([`5b2c4c7`](https://github.com/k6ef/dmrid_lookup/commit/5b2c4c7ceffda27ac5847b0793b02cbd8cb0f7fe))
+
+
 ## v1.1.1 (2025-04-28)
 
 ### Bug Fixes
