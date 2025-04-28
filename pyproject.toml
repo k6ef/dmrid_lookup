@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [semantic_release]
-version_variable = "dmrid_lookup.py/__version__"  # Correct format with quotes
+version_variable = "dmrid_lookup.py.__version__"  # Correct format with quotes
 branch = "main"  # The main branch for version releases
 upload_to_pypi = true  # Enable PyPI upload
 upload_to_release = true  # Enable GitHub release creation
