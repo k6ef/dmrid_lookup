@@ -129,7 +129,7 @@ def main():
             all_results.extend(results)
 
     if not all_results:
-        print("No results found. Exiting.")
+        print("No results found..")
         sys.exit(1)
 
     if args.pretty:
