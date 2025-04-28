@@ -4,7 +4,7 @@ DMR ID Lookup Tool
 A Python package for looking up DMR IDs from radioid.net
 """
 
-__version__ = "1.0.14"
+__version__ = "1.0.15"
 
 from .dmrid_lookup import (
     main,
