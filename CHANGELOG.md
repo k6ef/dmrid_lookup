@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.6 (2025-04-28)
+
+### Bug Fixes
+
+- Update tests to match implementation and add main function tests
+  ([`dd7f112`](https://github.com/k6ef/dmrid_lookup/commit/dd7f1120a143454e9f3307785be0cd9a5f14442d))
+
+
 ## v1.1.5 (2025-04-28)
 
 ### Bug Fixes
