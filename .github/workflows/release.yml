@@ -1,24 +1,21 @@
-name: Release Python Package 🚀
+name: Build and Publish to PyPI 🚀
 
 on:
   push:
-    branches:
-      - main
     tags:
-      - 'v*'
+      - 'v*'  # Trigger on version tags (e.g., v1.0.0, v1.0.1, etc.)
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write  # Allows writing to the repository
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Full history fetch
-        ref: main  # Explicitly ensure it checks out the right branch
+        fetch-depth: 0  # Fetch full history to get all tags
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -28,18 +25,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install --upgrade build twine python-semantic-release
+        pip install --upgrade build twine
 
-    - name: Check python-semantic-release version
+    - name: Build the package
       run: |
-        python3 -m semantic_release --version  # Ensure latest version installed
+        python -m build  # Build the package
 
-    - name: Run python-semantic-release
-      env:
-        PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEBUG: semantic_release*
+    - name: Upload to PyPI
       run: |
-        set -x
-        python3 -m semantic_release publish
+        python3 -m twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}  # Upload the package to PyPI
 
