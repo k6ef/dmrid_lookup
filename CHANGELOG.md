@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v1.1.10 (2025-04-29)
+
+### Bug Fixes
+
+- Reorganize package structure and move standalone script to scripts directory
+  ([`be94bb7`](https://github.com/k6ef/dmrid_lookup/commit/be94bb7223f7d68c3b8323fd3983e69370f0c54e))
+
+### Chores
+
+- Remove old standalone script
+  ([`15412fd`](https://github.com/k6ef/dmrid_lookup/commit/15412fd769cfe507a9cc1845ff2281d18e3bd718))
+
+
 ## v1.1.9 (2025-04-29)
 
 ### Bug Fixes
