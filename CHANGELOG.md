@@ -1,7 +1,23 @@
 # CHANGELOG
 
 
+## v1.1.9 (2025-04-29)
+
+### Bug Fixes
+
+- Remove duplicate function definitions from __init__.py
+  ([`29257bf`](https://github.com/k6ef/dmrid_lookup/commit/29257bff25e26ba54d240b088b8ba1f52d138a74))
+
+### Chores
+
+- Bump version to 1.0.15
+  ([`8f98c54`](https://github.com/k6ef/dmrid_lookup/commit/8f98c541c7d14c414c698e8e0a9e7fda5b2a35a7))
+
+
 ## v1.1.8 (2025-04-28)
+
+
+## v1.0.15 (2025-04-28)
 
 ### Bug Fixes
 
